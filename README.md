@@ -318,3 +318,19 @@ New agents, better prompts, cross-platform fixes, clearer docs — all welcome. 
 **DukOS — your startup's night shift.**
 
 </div>
+
+---
+
+<div align="center">
+
+## Star History
+
+<a href="https://star-history.com/#david-vrba/dukos&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=david-vrba/dukos&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=david-vrba/dukos&type=Date" />
+   <img alt="DukOS Star History Chart" src="https://api.star-history.com/svg?repos=david-vrba/dukos&type=Date" />
+ </picture>
+</a>
+
+</div>
