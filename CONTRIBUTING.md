@@ -38,9 +38,9 @@ Top contributors can have a real duck from the founder's physical collection nam
 ### 1. Fork and clone
 
 ```bash
-git clone https://github.com/duk-os/duk-os.git
-cd duk-os
-git remote add upstream https://github.com/duk-os/duk-os.git
+git clone https://github.com/david-vrba/dukos.git
+cd dukos
+git remote add upstream https://github.com/david-vrba/dukos.git
 ```
 
 ### 2. Create a branch
@@ -66,10 +66,10 @@ claude --print --dangerously-skip-permissions \
   "You are the [agent-name] agent. Read agents/prompts/[agent-name].md. Summarize your role in one sentence."
 ```
 
-For `run.sh` changes, do a dry-run:
+For `run.sh` changes, syntax-check it:
 
 ```bash
-bash tools/verify-setup.sh
+bash -n run.sh
 ```
 
 ### 5. Open a PR
@@ -213,7 +213,7 @@ checkpoint/             — Per-agent crash recovery state
 handoff/                — Per-agent session summaries
 reports/                — Agent outputs (research, SEO, finance, etc.)
 content-queue/          — Content drafts
-skills/                 — Built-in slash commands (/yt-tran, /reel, etc.)
+skills/                 — Built-in slash commands (/orient, /sanity-check)
 tools/                  — Helper scripts (setup.sh, cost-estimate.sh, etc.)
 run.sh                  — Main launch script
 CLAUDE.md               — Global agent context

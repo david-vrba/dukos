@@ -59,7 +59,7 @@ Because everything is files and Git, **crash recovery is free**: every agent wri
 
 ```bash
 # 1. Clone
-git clone https://github.com/duk-os/duk-os.git && cd duk-os
+git clone https://github.com/david-vrba/dukos.git && cd dukos
 
 # 2. Run setup
 bash tools/setup.sh
@@ -208,13 +208,12 @@ Set `"caveman_mode": true` in `config/settings.json`. Cuts verbose agent output 
 
 ## Built-in skills
 
-DukOS ships with three slash-command skills (in `skills/`) any agent (or you) can invoke:
+DukOS ships with two slash-command skills (in `skills/`) any agent (or you) can invoke:
 
 | Skill | What it does |
 |---|---|
 | `/orient` | Get oriented in any codebase in under 60 seconds — what it is, the stack, recent git activity, the handful of files that matter, and loose ends |
 | `/sanity-check` | Post-implementation audit — security, logic edge cases, performance, and stack-specific bugs; LOW mode (changed files) or HIGH mode (full codebase) |
-| `/code-review` | Multi-agent PR review — 5 parallel reviewers, each finding confidence-scored by a judge, only 80%+ surfaced, posted as inline PR comments |
 
 More skills from the author's toolkit are being ported into this library — contributions are welcome ([CONTRIBUTING.md](CONTRIBUTING.md)).
 
