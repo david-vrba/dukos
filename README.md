@@ -239,16 +239,20 @@ No manual recovery. It's automatic.
 ## The ducks
 
 <div align="center">
-  <img src="docs/assets/duck-walk.gif" alt="DukOS mascot" width="96" />
+<table border="0">
+<tr>
+<td align="center"><img src="docs/assets/duck-idle.gif" width="84" alt="idle" /><br/><sub><b>idle</b></sub></td>
+<td align="center"><img src="docs/assets/duck-walk.gif" width="84" alt="walk" /><br/><sub><b>walk</b></sub></td>
+<td align="center"><img src="docs/assets/duck-fly.gif" width="84" alt="fly" /><br/><sub><b>fly</b></sub></td>
+<td align="center"><img src="docs/assets/duck-talk.gif" width="84" alt="talk" /><br/><sub><b>talk</b></sub></td>
+<td align="center"><img src="docs/assets/duck-lookback.gif" width="84" alt="look back" /><br/><sub><b>look back</b></sub></td>
+</tr>
+</table>
 </div>
 
 DukOS has a brand: every agent is a duck in a costume that matches its role. The orchestrator is **The Maestro** (tuxedo, conductor's baton). The researcher is **The Detective** (trenchcoat, magnifying glass). QA is **The Inspector** (hard hat, clipboard, disapproving look).
 
-It's deliberately a little silly — and it makes the system memorable, the docs readable, and the community fun to be part of.
-
-**Brand colors:** `#FFE70F` primary · `#FF9900` secondary · `#DBA300` accent
-
-<img src="docs/assets/brand-colors.png" alt="DukOS brand colors" width="440" />
+It's deliberately a little silly — and it makes the system memorable, the docs readable, and the community fun to be part of. The duck is hand-pixeled — idle, walk, fly, talk, and a dozen more animation states.
 
 ### Contributor tiers
 
