@@ -1,0 +1,10 @@
+{
+  "template": "founder-os",
+  "power_mode": "standard",
+  "caveman_mode": false,
+  "projects": [
+    { "id": "my-saas", "template": "dev-studio" },
+    { "id": "my-game", "template": "game-studio" },
+    { "id": "my-brand", "template": "marketing-engine" }
+  ]
+}

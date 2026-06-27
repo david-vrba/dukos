@@ -1,0 +1,21 @@
+# Secrets — never commit
+.env
+*.local.*
+
+# Logs
+logs/
+*.log
+
+# Dependencies
+node_modules/
+
+# Crash-recovery checkpoints (regenerated each run; keep the dir, ignore contents)
+# Add a checkpoint/.gitkeep file to keep the empty directory tracked.
+checkpoint/*.md
+
+# Reversible-delete staging (tools/safe-rm.sh moves files here, never permanent)
+.trash/
+
+# OS cruft
+.DS_Store
+Thumbs.db
