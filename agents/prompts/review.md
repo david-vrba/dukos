@@ -50,16 +50,16 @@ If all clear: verdict is **PASS**
 
 ### Step 6: System Change Tracking — Layer 2 backfill
 
-This is your Layer 2 role in the System Change Tracking system. Read `SYSTEM_CHANGES.md` and `config/system-scope.json` before this step.
+This is your Layer 2 role: make sure system-scope edits this shift leave an audit trail in `archive/changes/`.
 
 **Goal:** Ensure every commit in this shift that touches a system-scope file has a corresponding log in `archive/changes/`. Write a backfill log for any that are missing.
 
 **Procedure:**
 1. For each commit from Step 1 (ALL commits, not just code commits — including `orchestrator:`, `admin:`, etc.):
-   - Run `git show --stat [hash]` and check whether any changed file matches entries in `config/system-scope.json` (`always_log_files` or `always_log_patterns`, minus `never_log_patterns`).
+   - Run `git show --stat [hash]` and check whether any changed file is a system-scope file (an agent prompt, `CLAUDE.md`, `_shared-rules.md`, or anything in `config/` or `tools/`).
    - If yes: check whether the commit message contains a `Change-Log:` footer OR whether a log file in `archive/changes/` already references this commit hash.
    - If a log exists → skip.
-   - If no log exists → write a backfill log using `archive/changes/_templates/low-mode.md`. Fill in:
+   - If no log exists → write a short backfill log in `archive/changes/`. Fill in:
      - `title:` — from commit message subject
      - `date:` — commit date
      - `author:` — "review agent (Layer 2 backfill)"

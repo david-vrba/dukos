@@ -40,14 +40,15 @@ check_optional() {
 echo "Checking tools..."
 check_required claude   "Claude Code CLI (claude)"
 check_required git      "git"
-check_optional node     "Node.js (node)"     "some skills and the dashboard need it"
-check_optional python3  "Python 3 (python3)" "select-mode and cost-estimate need it"
+check_optional node     "Node.js (node)"     "only needed by a few optional skills"
+check_required python3  "Python 3 (python3)"
 echo
 
 if [ "$missing_hard" -ne 0 ]; then
   err "Install the missing required tools, then re-run: bash tools/setup.sh"
   echo "      Claude Code:  https://claude.ai/code"
   echo "      git:          https://git-scm.com/downloads"
+  echo "      Python 3:     https://www.python.org/downloads/"
   exit 1
 fi
 

@@ -3,6 +3,10 @@
 This file is the root context document. **Every agent reads this first**, then
 `agents/prompts/_shared-rules.md`, before doing anything else.
 
+> **New here, setting up DukOS for the first time?** In an interactive Claude Code session,
+> run `/setup` (or just ask to "set up DukOS") and you'll be walked through it — tools, API
+> key, template, cost, first shift. Everything below is the operating manual the agent fleet runs on.
+
 ---
 
 ## What DukOS Is

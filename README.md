@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/og-image.png" alt="DukOS" width="600" />
+<img src="docs/assets/hero.png" alt="DukOS" width="760" />
 
 # DukOS
 
@@ -59,24 +59,32 @@ Because everything is files and Git, **crash recovery is free**: every agent wri
 
 ## Quick Start
 
-**Requirements:** Claude Code CLI, Git, Node.js, an Anthropic API key. A Bash shell (Git Bash on Windows, or WSL).
+**Requirements:** Claude Code CLI, Git, Python 3, and a Bash shell (Git Bash on Windows, or WSL). Plus an Anthropic API key or a Claude subscription. (Node.js is only needed for a few optional skills.)
+
+### The easy way — let Claude Code set it up for you
 
 ```bash
-# 1. Clone
 git clone https://github.com/david-vrba/dukos.git && cd dukos
+claude
+```
 
-# 2. Run setup
-bash tools/setup.sh
+Then, inside Claude Code, run:
 
-# 3. Add your API key
-cp config/.env.example .env
-# → edit .env: add ANTHROPIC_API_KEY
+```
+/setup
+```
 
-# 4. Pick a template + power mode
-bash tools/select-mode.sh
+`/setup` checks your tools, creates your `.env`, helps you pick a template and power mode, previews the cost, and walks you through launching and scheduling your first shift — interactively. It never spends money or starts agents without asking you first.
 
-# 5. Launch a shift
-bash run.sh
+### The manual way
+
+```bash
+git clone https://github.com/david-vrba/dukos.git && cd dukos
+bash tools/setup.sh                 # check tools, create dirs, seed .env
+cp config/.env.example .env         # then add your ANTHROPIC_API_KEY
+bash tools/select-mode.sh           # pick a template + power mode
+bash tools/cost-estimate.sh         # preview a rough monthly cost
+bash run.sh                         # launch a shift
 ```
 
 First run takes a few minutes. After that, schedule it (cron / Task Scheduler) and read the morning report.
@@ -200,21 +208,22 @@ Run `bash tools/cost-estimate.sh` **before** your first launch — it shows a mo
 
 ### Caveman Mode
 
-A token-saving toggle. When on, agents strip all filler and write in compressed fragments.
+An optional terseness toggle. Set `"caveman_mode": true` in `config/settings.json` and agents strip filler and write in compressed fragments to save tokens.
 
 > **Normal:** *"I have successfully completed the competitor analysis and identified three key gaps..."*
 > **Caveman:** *"analysis done. 3 gaps. acting now."*
 
-Set `"caveman_mode": true` in `config/settings.json`. Cuts verbose agent output 30–60%. Recommended for Starter mode and tight budgets. Does not affect code the agents write.
+Recommended for Starter mode and tight budgets. It only changes how agents narrate — never the code or content they produce.
 
 ---
 
 ## Built-in skills
 
-DukOS ships with two slash-command skills (in `skills/`) any agent (or you) can invoke:
+DukOS ships with three slash commands in `.claude/commands/` — open Claude Code in the repo and they're ready:
 
-| Skill | What it does |
+| Command | What it does |
 |---|---|
+| `/setup` | First-time setup and onboarding — checks your tools, configures `.env`, picks a template, previews cost, and walks you through your first shift |
 | `/orient` | Get oriented in any codebase in under 60 seconds — what it is, the stack, recent git activity, the handful of files that matter, and loose ends |
 | `/sanity-check` | Post-implementation audit — security, logic edge cases, performance, and stack-specific bugs; LOW mode (changed files) or HIGH mode (full codebase) |
 
@@ -300,7 +309,7 @@ The items above are the build plan — this Roadmap section is the canonical lis
 
 ## License
 
-MIT — use it, fork it, build on it. See [LICENSE](LICENSE).
+MIT — use it, fork it, build on it. See [LICENSE](LICENSE). Agents touch your files and spend API money — read the [Disclaimer](DISCLAIMER.md) first.
 
 ## Credits
 

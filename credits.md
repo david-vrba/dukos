@@ -25,13 +25,7 @@ No exceptions — this is a matter of principle.
 
 ## Built-in Skills
 
-Skills that ship with DukOS use these tools under the hood:
-
-| Skill | Dependencies |
-|---|---|
-| `/yt-tran` | [yt-dlp](https://github.com/yt-dlp/yt-dlp), [Whisper](https://github.com/openai/whisper), [ffmpeg](https://ffmpeg.org) |
-| `/reel` | [yt-dlp](https://github.com/yt-dlp/yt-dlp), [Whisper](https://github.com/openai/whisper), [Playwright](https://playwright.dev), [Firecrawl](https://firecrawl.dev) |
-| `/biz-validate` | [Tavily](https://tavily.com), [Firecrawl](https://firecrawl.dev) |
+DukOS ships with two slash-command skills — `/orient` and `/sanity-check`. Both are pure Claude Code skills with no external dependencies.
 
 ---
 

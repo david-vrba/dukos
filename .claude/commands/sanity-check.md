@@ -55,34 +55,36 @@ Priority: **Go > Python > Next.js > React SPA > Node/Express > Generic JS**
 
 If no stack matches, note "unrecognized stack — universal checks only" and continue to Phase 3 without loading any stack file.
 
-Detect your skills directory first, then load the matching stack file:
+Find the stack-module directory (repo-local first, then a global install):
 
 ```bash
-# Unix/Mac/Windows Git Bash:
-echo "$HOME/.claude/skills/sanity-check-stacks"
-# Windows PowerShell (if not using Git Bash):
-# echo "$env:USERPROFILE\.claude\skills\sanity-check-stacks"
+for d in skills/sanity-check/sanity-check-stacks "$HOME/.claude/skills/sanity-check-stacks"; do
+  [ -d "$d" ] && STACKS="$d" && break
+done
+echo "stack modules: ${STACKS:-none found}"
 ```
+
+Load the matching stack file from `$STACKS/`:
 
 | Stack | File |
 |-------|------|
-| Next.js | `~/.claude/skills/sanity-check-stacks/nextjs.md` |
-| Python | `~/.claude/skills/sanity-check-stacks/python.md` |
-| Go | `~/.claude/skills/sanity-check-stacks/go.md` |
-| React SPA | `~/.claude/skills/sanity-check-stacks/react-spa.md` |
-| Node/Express | `~/.claude/skills/sanity-check-stacks/node-express.md` |
+| Next.js | `$STACKS/nextjs.md` |
+| Python | `$STACKS/python.md` |
+| Go | `$STACKS/go.md` |
+| React SPA | `$STACKS/react-spa.md` |
+| Node/Express | `$STACKS/node-express.md` |
 
 Load these conditional modules if conditions match:
 
 | Condition | File |
 |-----------|------|
-| Next.js or React SPA | `~/.claude/skills/sanity-check-stacks/ui-completeness.md` |
-| Changed files include migrations/, .sql, alembic/, prisma/migrations/ | `~/.claude/skills/sanity-check-stacks/database-migrations.md` |
+| Next.js or React SPA | `$STACKS/ui-completeness.md` |
+| Changed files include migrations/, .sql, alembic/, prisma/migrations/ | `$STACKS/database-migrations.md` |
 
 Always load these three regardless of mode:
-- `~/.claude/skills/sanity-check-stacks/logic.md`
-- `~/.claude/skills/sanity-check-stacks/security.md`
-- `~/.claude/skills/sanity-check-stacks/performance.md`
+- `$STACKS/logic.md`
+- `$STACKS/security.md`
+- `$STACKS/performance.md`
 
 In LOW mode: run all their checks scoped to changed files only. In HIGH mode: run them across the full codebase.
 
@@ -206,14 +208,14 @@ SANITY CHECK — [HIGH/LOW] — [PASS / WARN / FAIL]
 
 Blockers
   1. <issue> [file:line]
-     → <fix>
+     -> <fix>
 
 Warnings
   2. <issue> [file:line]
-     → <fix>
+     -> <fix>
 
 Nitpicks
-  3. <issue> [file:line] → <fix>
+  3. <issue> [file:line] -> <fix>
 
 Tests: <PASS (X) / FAIL (X failed) / tsc PASS / tsc FAIL / NO TESTS>
 Verdict: READY / NEEDS FIXES

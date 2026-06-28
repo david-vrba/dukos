@@ -129,7 +129,7 @@ Load that project's context from projects/[id]/context.md if it exists.
 
 ## Writing a New Skill
 
-Skills are slash commands that agents (and Claude Code users) can invoke. They live in `skills/` and are registered in `.claude/settings.json`.
+Skills are slash commands that agents (and Claude Code users) can invoke. They live in `.claude/commands/` — one `.md` file per command, which Claude Code auto-registers when you open the repo.
 
 A skill is a single `.md` file with a YAML frontmatter block:
 
@@ -213,7 +213,8 @@ checkpoint/             — Per-agent crash recovery state
 handoff/                — Per-agent session summaries
 reports/                — Agent outputs (research, SEO, finance, etc.)
 content-queue/          — Content drafts
-skills/                 — Built-in slash commands (/orient, /sanity-check)
+.claude/commands/       — Built-in slash commands (/setup, /orient, /sanity-check)
+skills/sanity-check/    — Stack-specific check modules loaded by /sanity-check
 tools/                  — Helper scripts (setup.sh, cost-estimate.sh, etc.)
 run.sh                  — Main launch script
 CLAUDE.md               — Global agent context

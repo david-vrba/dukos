@@ -1,7 +1,6 @@
 # DukOS — Disclaimer & Usage Notice
 
-> **STATUS: DRAFT — Not reviewed by a lawyer. Do not treat this as legal advice.**
-> This file is a placeholder. Have a qualified legal professional review before public release.
+> **This is a general notice, not legal advice.** Consult your own counsel for your situation.
 
 ---
 
@@ -67,7 +66,7 @@ You are responsible for ensuring your use of any model complies with the applica
 DukOS does not control, cap, or limit your Anthropic API spend. Running many agents with Opus-class models can cost significant money. Always:
 
 - Set a billing limit in your [Anthropic Console](https://console.anthropic.com)
-- Review the `COST.md` estimates before your first run
+- Run `bash tools/cost-estimate.sh` to preview costs before your first run
 - Start with Haiku or local models while testing
 
 The maintainers are not responsible for unexpected API bills.
@@ -82,4 +81,4 @@ In short: free to use, modify, and distribute. No warranty. No liability.
 
 ---
 
-*This is a draft document. Legal review required before public release.*
+*MIT-licensed. Provided as-is, without warranty.*

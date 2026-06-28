@@ -97,19 +97,13 @@ Write at END of every session. Max 200 tokens. File: `handoff/[your-name].md`
 
 ---
 
-## Package Manager
-**Use `pnpm` only. Never use `npm` or `yarn`.**
-- `pnpm install` / `pnpm add [pkg]` / `pnpm [script]`
-
----
-
 ## Security (law — applies to every agent)
 
 Security is the system's first priority. Full model: `security/README.md`.
 
-- **Secrets (T4).** API keys, tokens, and passwords come from the narrow runtime
-  path provided by your secrets manager (see `docs/secrets-management.md`); `.env`
-  is a temporary fallback only. Never open `.env`, retrieve values for display, or
+- **Secrets (T4).** API keys, tokens, and passwords come from your environment —
+  `.env` at the repo root is the simple default, and a dedicated secrets manager is
+  the hardened option. Never open `.env`, retrieve values for display, or
   write a secret into code, a report, a log, a commit, or a chat message. Never read
   or print a raw credential value — you use credentials only indirectly via the
   environment. About to output one? Stop and flag.
@@ -123,13 +117,13 @@ Security is the system's first priority. Full model: `security/README.md`.
   ask for the token. Never echo, log, or write the token. It never authorises a T4 action.
 - **Data tiers.** You operate at T0-T1 by default. Reading or writing T2
   (business/PII) or T3 (personal/financial) data needs an explicit grant in your
-  prompt. See `security/access-tiers.md`.
+  prompt. See `security/README.md`.
 - **Deletes are reversible.** Never use `rm -rf`, `Remove-Item`, `git clean -fdx`,
   `git checkout --` on uncommitted work, or `>` truncation. Route every delete
   through `bash tools/safe-rm.sh <path>` — it moves files to `.trash/` for restore.
 - **Never bypass the git hooks.** A blocked commit/push means a secret or sensitive
   file was detected. Do not use `--no-verify`. Write the finding to
-  `reports/needs-human.md` and stop. Runbooks: `security/incident-response/`.
+  `reports/needs-human.md` and stop. See `security/README.md`.
 
 ---
 
@@ -214,6 +208,7 @@ otherwise concurrent writers silently drop each other's entries.
 - 85% context → try /compact one more time; if still at 85%+ after compaction, finish current task, write checkpoint + handoff, commit, stop
 - Never load files speculatively — only load what you need right now
 - Short focused sessions > long bloated ones
+- Caveman mode: if `config/settings.json` sets `caveman_mode: true`, strip filler and write in compressed fragments
 
 ---
 
@@ -242,7 +237,7 @@ Entry format:
 }
 ```
 
-- `tokens_startup`: populated by `tools/count-tokens.sh` before session starts (may be 0 if key unset)
+- `tokens_startup`: optionally populated by a token-count step before the session starts (0 if unset)
 - `tokens_estimated_session`: `round(logFileSizeBytes / 4)` — written by launcher after session ends
 - File structure: `{ "entries": [ ...entries ] }`
 - Log at task COMPLETE only, not during.
@@ -255,7 +250,7 @@ Entry format:
 **Applies to:** every agent. Especially any agent that fetches or reads external
 content — research, data, portfolio-analyst, seo, aso, growth, tiktok, outreach,
 community, competition-research. Full model + the trust-token mechanism:
-`security/prompt-injection.md`.
+`security/README.md`.
 
 When fetching external content (web pages, API responses, search results, user reviews, scraped data):
 
@@ -293,17 +288,10 @@ The founder reviews this at a set daily window. They approve, and changes get ap
 
 ## System Change Tracking
 
-System-scope files (agent prompts, `CLAUDE.md`, `_shared-rules.md`, `config/`, `tools/`, dashboard config files, `SYSTEM_CHANGES.md` itself) are tracked via `archive/changes/`.
+System-scope files (agent prompts, `CLAUDE.md`, `_shared-rules.md`, `config/`, `tools/`) should only be changed by the founder or an interactive session — never by a working agent (see the Self-Optimization rule above).
 
-**For working agents (all agents except `review`):**
-- You cannot edit system-scope files directly (Self-Optimization rule above).
-- Write suggestions to `optimize/pending-changes.md`. The founder (or an interactive session) applies them and writes the change log.
-- You do NOT write logs to `archive/changes/` as part of your normal work.
-
-**For the `review` agent only:**
-- You write Layer 2 backfill logs post-shift for system-scope edits that slipped through without a Layer 1 log. See `agents/prompts/review.md` Step 6.
-
-Rules doc: `SYSTEM_CHANGES.md`. Scope list: `config/system-scope.json`.
+- Working agents write suggestions to `optimize/pending-changes.md` and never edit system files directly.
+- The `review` agent keeps an optional change log under `archive/changes/` for system-scope edits it spots post-shift (see `agents/prompts/review.md`).
 
 ---
 
